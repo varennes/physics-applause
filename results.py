@@ -22,7 +22,7 @@ plt.title('Natural Frequency Distribution')
 
 plt.show()
 
-n = np.genfromtxt("fort.102");
+n = np.genfromtxt("fort.104");
 plt.plot( n[:,0], n[:,1])
 plt.show()
 

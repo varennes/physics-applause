@@ -15,7 +15,7 @@ module utility
 
     real(b8), parameter :: dt   = 0.0100_b8
     real(b8), parameter :: D    = 2.0000_b8 * pi / 6.900_b8
-    real(b8), parameter :: Kmin = 0.8000_b8
+    real(b8), parameter :: Kmin = 1.2000_b8
     real(b8), parameter :: meanFreq = 2.0000_b8*pi
 
 
@@ -63,6 +63,23 @@ real(b8) function orderQ( osc)
 end function orderQ
 
 
+real(b8) function getGroupI( oscFreq)
+    implicit none
+    real(b8), intent(in), dimension(:) :: oscFreq
+
+    integer  :: i
+    real(b8) :: groupI
+
+    groupI = 0.0_b8
+
+    do i = 1, Ntotal
+        groupI = groupI + oscFreq(i)
+    enddo
+    getGroupI = groupI / meanFreq / real(Ntotal)
+
+end function getGroupI
+
+
 ! update oscillator
 real(b8) function getOscFreq( k, ntrlFreq, osc)
     implicit none
@@ -70,7 +87,7 @@ real(b8) function getOscFreq( k, ntrlFreq, osc)
     real(b8), intent(in) :: ntrlFreq
     real(b8), intent(in), dimension(:) :: osc
 
-    getOscFreq = (ntrlFreq + Wmin( k, osc))*dt + normal( 0.0000_b8, sqrt(1.0000_b8/dt))
+    getOscFreq = ntrlFreq + Wmin( k, osc) + normal( 0.0000_b8, sqrt(1.0000_b8/dt))
 
 end function getOscFreq
 
