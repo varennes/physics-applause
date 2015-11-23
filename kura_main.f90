@@ -14,7 +14,7 @@ real(b8), allocatable :: timeQ(:), timeI(:)
 
 !!! set inital parameter values !!!
 tmax = 6000
-tAve = 100
+tAve = 300
 
 
 !!! allocate array size !!!
@@ -85,7 +85,7 @@ do t = 1, tmax
         q      = orderQ( osc)
         groupI = getGroupI( oscFreq)
         write(102,*) real(t)*dt, groupI, q
-        write(103,*) real(t)*dt, osc(1), oscFreq(1)
+        write(103,*) real(t)*dt, oscFreq(1), oscFreq(Ntotal), oscFreq(int(Ntotal/2))
     end if
 
 enddo

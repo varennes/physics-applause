@@ -75,7 +75,7 @@ real(b8) function getGroupI( oscFreq)
     do i = 1, Ntotal
         groupI = groupI + oscFreq(i)
     enddo
-    getGroupI = groupI / meanFreq / real(Ntotal)
+    getGroupI = groupI / real(Ntotal)
 
 end function getGroupI
 
@@ -87,7 +87,7 @@ real(b8) function getOscFreq( k, ntrlFreq, osc)
     real(b8), intent(in) :: ntrlFreq
     real(b8), intent(in), dimension(:) :: osc
 
-    getOscFreq = ntrlFreq + Wmin( k, osc) + normal( 0.0000_b8, sqrt(1.0000_b8/dt))
+    getOscFreq = ntrlFreq + Wmin( k, osc) + normal( 0.0000_b8, sqrt(dt))
 
 end function getOscFreq
 
