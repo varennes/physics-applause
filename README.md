@@ -1,5 +1,7 @@
 # The Physics of Applause
 
+> **Julien Varennes**
+
 Kuramoto model applied to system of applause.
 
 This project aims to replicate and expand on the simulations performed in the research paper [“Physics of the Rhythmic Applause”](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.61.6987) by Néda, Z., E. Ravasz, T. Vicsek, Y. Brechet, and A. L. Barabási.
