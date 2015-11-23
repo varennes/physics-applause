@@ -15,7 +15,7 @@ module utility
 
     real(b8), parameter :: dt   = 0.0100_b8
     real(b8), parameter :: D    = 2.0000_b8 * pi / 6.900_b8
-    real(b8), parameter :: Kmin = 1.2000_b8
+    real(b8), parameter :: Kmin = 0.8000_b8
     real(b8), parameter :: meanFreq = 2.0000_b8*pi
 
 
@@ -31,7 +31,7 @@ real(b8) function Wmin( k, osc)
     integer  :: i
     real(b8) :: x
 
-    x = 0.0_b8
+    x = 0.0000_b8
 
     do i = 1, Ntotal
         x = x + sin( osc(i) - osc(k))
@@ -87,7 +87,7 @@ real(b8) function getOscFreq( k, ntrlFreq, osc)
     real(b8), intent(in) :: ntrlFreq
     real(b8), intent(in), dimension(:) :: osc
 
-    getOscFreq = ntrlFreq + Wmin( k, osc) + normal( 0.0000_b8, sqrt(dt))
+    getOscFreq = ntrlFreq + Wmin( k, osc)
 
 end function getOscFreq
 

@@ -31,7 +31,7 @@ plt.plot( n[:,0], n[:,2])
 plt.ylabel('$<q>$')
 plt.xlabel('time')
 
-plt.savefig('test1.png')
+# plt.savefig('test1.png')
 plt.show()
 
 
@@ -46,5 +46,5 @@ plt.xlabel('time')
 plt.ylabel('Intensity Trajectoties')
 plt.title('Sound Intensity')
 
-plt.savefig('test2.png')
+# plt.savefig('test2.png')
 plt.show()

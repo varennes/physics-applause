@@ -35,6 +35,8 @@ ntrlFreq = 0.0000_b8
 timeI    = 0.0000_b8
 timeQ    = 0.0000_b8
 
+! calculate critical coupling value
+write(*,*) 'K_c =',sqrt(2.0000_b8/pi**3.0000_b8)*D 
 
 ! set oscillator angles and frequencies
 do i = 1, Ntotal
@@ -61,7 +63,7 @@ do t = 1, tmax
     ! calculate oscillator frequencies
     do i = 1, Ntotal
         oscFreq(i) = getOscFreq( i, ntrlFreq(i), osc)
-        osc(i)     = osc(i) + oscFreq(i) * dt
+        osc(i)     = osc(i) + oscFreq(i) * dt + normal( 0.0000_b8, sqrt(dt))
 
         ! make sure oscillator phase stays between 0 and 2*pi
         if ( osc(i) > 2.0000_b8*pi ) then
@@ -81,7 +83,7 @@ do t = 1, tmax
 
     end if
 
-    if ( mod(t,10) == 0 ) then
+    if ( mod(t,100) == 0 ) then
         q      = orderQ( osc)
         groupI = getGroupI( oscFreq)
         write(102,*) real(t)*dt, groupI, q
