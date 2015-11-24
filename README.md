@@ -32,16 +32,29 @@ $$
 Each oscilator angle is updated using the Euler method.
 
 $$
-\phi_k(t+\Delta t) = f_k(t)\Delta t + \eta_k \\
+\phi_k(t+\Delta t) = \phi_k(t) + f_k(t)\Delta t + \eta_k \\
 f_k(t) = \omega_k + W_k^\text{int} \\
 $$
 
-$\eta_k$ is a random vairable with $\mu_\eta = 0.0$ and $\sigma_\eta^2 = \Delta t$. The function $f_k(t)$ is interpreted as the frequency of the oscillator.
+$\eta_k$ is a Gaussian distributed random variable with $\mu_\eta = 0.0$ and $\sigma_\eta^2 = \Delta t$. The function $f_k(t)$ is interpreted as the frequency of the oscillator.
 
 ## Paper's Simulation Results
 
-![fig](./fig/paper_fig6.png)
+![fig6](./fig/paper_fig6.png)
 
-This figure displays their simulation results. Each oscillator is initialized with a distribution of natural frequencies which is supposed to replicate the mode-I experimental frequency distribution (solid line).
+This figure displays their simulation results. Each oscillator is initialized with a distribution of natural frequencies which is supposed to replicate the mode-I experimental frequency distribution (solid line). For the parameters given, the critical coupling is
 
-![fig](./fig/paper_fig5.png)
+$$
+K_c = \sqrt{\frac{2}{\pi^3}}\cdot\frac{2\pi}{6.9 \ \text{s}}
+= 0.231 \ \text{s}^{-1} .
+$$
+
+This is not in agreement with the paper's statement that, "In the given setup we have $K<K_c$, and thus no synchronization should appear." Using the parameter values given the coupling strength is already larger than the critical coupling required for partial synchronization which leads me to believe there is a mistake in the reported simulation parameters.
+
+![fig5](./fig/paper_fig5.png)
+
+## My Simulation Results
+
+Oscillators are initialized with their natural frequencies which are sampled from a Gaussian distribution.
+
+![dist1](./fig/dist1.png) 
