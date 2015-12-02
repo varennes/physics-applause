@@ -1,62 +1,56 @@
-# The Physics of Applause
+# Kuramoto Model Simulations
 
-> **Julien Varennes**
+These simulations investigate a Kuramoto model system of oscillators. All oscillators interact via a phase-minimizing coupling term.
 
-Kuramoto model applied to system of applause.
+This project aims to replicate and expand on the simulations performed in the research paper [“Physics of the Rhythmic Applause”](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.61.6987) by Néda, Z., E. Ravasz, T. Vicsek, Y. Brechet, and A. L. Barabási. This [review on Kuramoto model](http://journals.aps.org/rmp/abstract/10.1103/RevModPhys.77.137) is also a useful resource.
 
-This project aims to replicate and expand on the simulations performed in the research paper [“Physics of the Rhythmic Applause”](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.61.6987) by Néda, Z., E. Ravasz, T. Vicsek, Y. Brechet, and A. L. Barabási.
+Numerical simulations were implemented using the Euler method for time integration.
 
-## My Simulation
+## Simulation Outline
 
-The dynamics of each oscillator are the following:
+Parameters:
+ - `K` coupling strength
+ - `D` variance in natural frequency (`omegaNtr`) distribution
+ - `N` number of oscillators
 
-$$
-\dot{\phi}_k = \omega_k + \sum_{j=1}^N K_{j,k} \sin(\phi_j - \phi_k), \ \ j = 1, ..., N
-$$
+Initial Conditions in most cases are a uniform distribution in initial oscillator phase,
 
-$\omega_k$ is the natural oscillation frequency of oscillator $k$ and is drawn from a natural distribution as prescribed in the paper.  $K_{j,k}$ is the coupling strength between oscillators and it is assumed that on average all audience members interact with one another with equal strength $K_{j,k} \to K/N$. So the above equation simplifies to
+``` matlab
+for i = 1:N;
+    theta(i) = rand*2.0*pi;
+end
+```
+and a normal distribution in oscillator natural frequency
+``` matlab
+for i = 1:N;
+    omegaNtr(i) = sqrt(D)*randn + omegaMean;
+end
+```
 
-$$
-\dot{\phi}_k = \omega_k + W_k^\text{int} \ , \\
-W_k^\text{int} = \frac{K}{N}\sum_{j=1}^N \sin(\phi_j - \phi_k).
-$$
+### Files
 
-In the Kuramoto model at least partial syncronization is only possible for $K>K_c$ where $K_c$ is the critical coupling strength.
+### `kura1.m`
 
-$$
-K_c = \sqrt{ \frac{2}{\pi^2} } D
-$$
+Outputs the time evolution of the order parameter `r`.
 
-### Implementation
+### `plot_kura1.m`
 
-Each oscilator angle is updated using the Euler method.
+Must run `kura1` before this script. Plots the simulation results from `kura1.m` alongside figure 10 from the aforementioned Kuramoto review for comparison.
 
-$$
-\phi_k(t+\Delta t) = \phi_k(t) + f_k(t)\Delta t + \eta_k \\
-f_k(t) = \omega_k + W_k^\text{int} \\
-$$
+### `kura2.m`
 
-$\eta_k$ is a Gaussian distributed random variable with $\mu_\eta = 0.0$ and $\sigma_\eta^2 = \Delta t$. The function $f_k(t)$ is interpreted as the frequency of the oscillator.
+Run a simulation which is an attempt to recreate the behavior seen in the simulations performed in the *Physics of Rythmic Applause* paper.
 
-## Paper's Simulation Results
+Useful Outputs:
+- `momega` oscillator frequency at each recorded point in time
+- `int` mean oscillator frequency, also referred to as intensity
+- `r` order parameter
+- `mi`, `mr` time-averaged intensity and order parameter corresponding to times `mt`
 
-![fig6](./fig/paper_fig6.png)
+### `ordertest1.m`
 
-This figure displays their simulation results. Each oscillator is initialized with a distribution of natural frequencies which is supposed to replicate the mode-I experimental frequency distribution (solid line). For the parameters given, the critical coupling is
+Parameter scan over different values of the coupling strength. For each value of `K` the order parameter is calculated.
 
-$$
-K_c = \sqrt{\frac{2}{\pi^3}}\cdot\frac{2\pi}{6.9 \ \text{s}}
-= 0.231 \ \text{s}^{-1} .
-$$
-
-This is not in agreement with the paper's statement that, "In the given setup we have $K<K_c$, and thus no synchronization should appear." Using the parameter values ($K=0.8 \ \text{s}^{-1}$) given the coupling strength is already larger than the critical coupling required for partial synchronization which leads me to believe there is a mistake in the reported simulation parameters.
-
-![fig5](./fig/paper_fig3.png)
-
-The chosen parameter values for the mean clapping frequency are also perplexing. The goal of the simulation is to replicate to observed behavior of the order parameter increasing when the audience switches from mode-I applause into the lower frequency (mode-II) phase of applause. Fig.3 from the paper shows the measured distributions of frequencies corresponding to either mode of applause. However, for the simulation an average frequency of $1 \ \text{s}^{-1}$ ($\bar{\omega}=2\pi \ \text{s}^{-1}$) is prescribed for the initial condition. This is not in agreement with the average frequency of mode-I clapping which is reported to be $\approx 4 \ \text{s}^{-1}$ which would correspond to ($\bar{\omega}=8\pi \ \text{s}^{-1}$).
-
-## My Simulation Results
-
-Oscillators are initialized with their natural frequencies which are sampled from a Gaussian distribution.
-
-![dist1](./fig/dist1.png)
+Useful Outputs:
+- `Kmat` all scanned `K` values
+- `rRun` order parameter values corresponding to each `K`

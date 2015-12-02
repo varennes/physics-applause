@@ -91,13 +91,9 @@ end
 % figure
 % plot( t, momega(:,1))
 % hold on
-% for i = 100:10:N
+% for i = 1:10:N
 %     plot( t, momega(:,i))
 % end
-% plot( t, momega(:,N))
-% plot( t, momega(:,floor(N/2)))
-% plot( t, momega(:,floor(N/10)))
-% plot( t, momega(:,floor(N/5)))
 
 
 %% mean sound intensity
