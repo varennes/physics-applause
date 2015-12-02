@@ -2,7 +2,7 @@
 
 These simulations investigate a Kuramoto model system of oscillators. All oscillators interact via a phase-minimizing coupling term.
 
-This project aims to replicate and expand on the simulations performed in the research paper [“Physics of the Rhythmic Applause”](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.61.6987) by Néda, Z., E. Ravasz, T. Vicsek, Y. Brechet, and A. L. Barabási. This [review on Kuramoto model](http://journals.aps.org/rmp/abstract/10.1103/RevModPhys.77.137) is also a useful resource.
+This project aims to replicate and expand on the simulations performed in the research paper [“Physics of the Rhythmic Applause”](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.61.6987) by Néda, Z., E. Ravasz, T. Vicsek, Y. Brechet, and A. L. Barabási. This [review on Kurthe amoto model](http://journals.aps.org/rmp/abstract/10.1103/RevModPhys.77.137) is also a useful resource.
 
 Numerical simulations were implemented using the Euler method for time integration.
 
