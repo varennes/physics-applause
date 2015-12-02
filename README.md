@@ -49,12 +49,14 @@ K_c = \sqrt{\frac{2}{\pi^3}}\cdot\frac{2\pi}{6.9 \ \text{s}}
 = 0.231 \ \text{s}^{-1} .
 $$
 
-This is not in agreement with the paper's statement that, "In the given setup we have $K<K_c$, and thus no synchronization should appear." Using the parameter values given the coupling strength is already larger than the critical coupling required for partial synchronization which leads me to believe there is a mistake in the reported simulation parameters.
+This is not in agreement with the paper's statement that, "In the given setup we have $K<K_c$, and thus no synchronization should appear." Using the parameter values ($K=0.8 \ \text{s}^{-1}$) given the coupling strength is already larger than the critical coupling required for partial synchronization which leads me to believe there is a mistake in the reported simulation parameters.
 
-![fig5](./fig/paper_fig5.png)
+![fig5](./fig/paper_fig3.png)
+
+The chosen parameter values for the mean clapping frequency are also perplexing. The goal of the simulation is to replicate to observed behavior of the order parameter increasing when the audience switches from mode-I applause into the lower frequency (mode-II) phase of applause. Fig.3 from the paper shows the measured distributions of frequencies corresponding to either mode of applause. However, for the simulation an average frequency of $1 \ \text{s}^{-1}$ ($\bar{\omega}=2\pi \ \text{s}^{-1}$) is prescribed for the initial condition. This is not in agreement with the average frequency of mode-I clapping which is reported to be $\approx 4 \ \text{s}^{-1}$ which would correspond to ($\bar{\omega}=8\pi \ \text{s}^{-1}$).
 
 ## My Simulation Results
 
 Oscillators are initialized with their natural frequencies which are sampled from a Gaussian distribution.
 
-![dist1](./fig/dist1.png) 
+![dist1](./fig/dist1.png)
